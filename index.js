@@ -10,9 +10,16 @@ app.use(express.json());
 app.use(cors())
 
 app.use(express.static(path.join(__dirname, '/public')))
+
+//servir pagina base
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
+
+//configurar para compartir url que no sean la base /
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // Definir una ruta POST para recibir los datos del formulario
 app.post('/enviar-correo', (req, res) => {
@@ -53,6 +60,8 @@ app.post('/enviar-correo', (req, res) => {
   });
 });
 
+
+//end point para descargar cv
 app.get('/descargar-cv', function (req, res) {
 	const rutaArchivo = path.join(__dirname, 'public', 'cv-moises-mannarino.rtf');
     res.download(rutaArchivo);
