@@ -16,9 +16,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
-//configurar para compartir url que no sean la base /
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+
+// Configurar una ruta para enviar el archivo index.html en todas las rutas excepto /descargar-archivo
+app.get('*', (req, res, next) => {
+  if (req.path !== '/descargar-cv') {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+  } else {
+    next();
+  }
+});
+
+//end point para descargar cv
+app.get('/descargar-cv', function (req, res) {
+	const rutaArchivo = path.join(__dirname, 'public', 'cv-moises-mannarino.pdf');
+    res.download(rutaArchivo);
+    //res.sendFile(rutaArchivo);
 });
 
 // Definir una ruta POST para recibir los datos del formulario
@@ -61,12 +73,8 @@ app.post('/enviar-correo', (req, res) => {
 });
 
 
-//end point para descargar cv
-app.get('/descargar-cv', function (req, res) {
-	const rutaArchivo = path.join(__dirname, 'public', 'cv-moises-mannarino.rtf');
-    res.download(rutaArchivo);
-    //res.sendFile(rutaArchivo);
-});
+
+
 //server escuchando
 app.listen(process.env.PORT || 3000,()=>{
 	console.log('programa almacen andando en el puerto '+ (process.env.PORT || 3000))
