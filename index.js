@@ -14,15 +14,31 @@ app.use(express.static(path.join(__dirname, '/public')))
 DBconection()
 
 
+
+// configuracion fileUpload------
+const fileUpload = require('express-fileupload');
+// Configuración de límites de tamaño de archivo
+app.use(fileUpload({
+  limits: { fileSize: 4 * 1024 * 1024 } // 4 MB
+}));
+
+// configuracion fileUpload------ fin
+
+
+
+//configuracion para servir archivos estaticos------
+// Obtén la ruta absoluta de la carpeta de archivos estáticos
+const uploadsPath = path.resolve(__dirname, 'uploads');
+// Sirve archivos estáticos desde la ruta absoluta
+app.use(express.static(uploadsPath));
+//configuracion para servir archivos estaticos------fin 
+
+
+
 //ruteo
 routes(app)
 
-//end point para descargar cv
-app.get('/descargar-cv', function (req, res) {
-  const rutaArchivo = path.join(__dirname, 'public', 'cv-moises-mannarino.pdf');
-      res.download(rutaArchivo);
-      //res.sendFile(rutaArchivo);
-});        
+       
 
 //server escuchando
 app.listen(process.env.PORT || 3000,()=>{
