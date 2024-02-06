@@ -1,12 +1,13 @@
 const enviarEmail = require('./helpers/enviarEmail.js')
-const routerVisits = require('./components/visits/route.js')
-const routerClicks = require('./components/clicks/route.js')
+
+const routerProducts = require('./components/products/route.js')
+const routerUser = require('./components/user/route.js')
 
 function routes(app) {
 	
-    app.use('/visits', routerVisits)
-    app.use('/clicks', routerClicks)
-
+    
+    app.use('/products', routerProducts)
+    app.use('/users', routerUser)
    
 
 	// Definir una ruta POST para recibir los datos del formulario

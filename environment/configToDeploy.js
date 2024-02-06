@@ -4,6 +4,7 @@ const configToDeploy = {
 	USER_DATABASE : process.env.USER_DATABASE,
 	PASSWORD_DATABASE : process.env.PASSWORD_DATABASE,
 	NAME_DATABASE : process.env.NAME_DATABASE,
+	APLICATION_PASSWORD : process.env.APLICATION_PASSWORD
 }
 
 
