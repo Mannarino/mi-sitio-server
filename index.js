@@ -24,35 +24,18 @@ webpush.setVapidDetails(
 );
 const notificationPayload = {
     "notification": {
-        "title": "Angular News",
-        "body": "Newsletter Available!",
-        "icon": "assets/main-page-logo-small-hat.png",
-        "vibrate": [100, 50, 100],
-        "data": {
-            "dateOfArrival": Date.now(),
-            "primaryKey": 1
-        },
-        "actions": [{
-            "action": "explore",
-            "title": "Go to the site"
-        }]
+        "title": "notificacion de prueba uno",
+        "body": "esta es solo una notificacion de prueba",
+        "icon": "https://quiet-pothos-1a4eb5.netlify.app/assets/piramide-1.jpg"
     }
 };
 
 const secondNotificationPayload = {
     "notification": {
-        "title": " mando una nueva notificacion",
-        "body": "siiii",
-        "icon": "assets/main-page-logo-small-hat.png",
-        "vibrate": [100, 50, 100],
-        "data": {
-            "dateOfArrival": Date.now(),
-            "primaryKey": 1
-        },
-        "actions": [{
-            "action": "explore",
-            "title": "Go to the site"
-        }]
+        "title": " notificacion de prueba dos",
+        "body": "esta es solo otra notificacion de prueba",
+        "icon": "https://quiet-pothos-1a4eb5.netlify.app/assets/piramide-1.jpg"
+        
     }
 };
 
