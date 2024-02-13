@@ -39,7 +39,22 @@ const notificationPayload = {
     }
 };
 
-
+const secondNotificationPayload = {
+    "notification": {
+        "title": " mando una nueva notificacion",
+        "body": "siiii",
+        "icon": "assets/main-page-logo-small-hat.png",
+        "vibrate": [100, 50, 100],
+        "data": {
+            "dateOfArrival": Date.now(),
+            "primaryKey": 1
+        },
+        "actions": [{
+            "action": "explore",
+            "title": "Go to the site"
+        }]
+    }
+};
 
 // configuracion fileUpload------
 const fileUpload = require('express-fileupload');
@@ -72,6 +87,15 @@ app.post('/notification', function (req, res) {
         req.body.subscription, 
         JSON.stringify(notificationPayload)).catch(error => 
                             { console.error(error.stack); });
+
+     setTimeout(() => {
+        webpush.sendNotification(
+            req.body.subscription,
+            JSON.stringify(secondNotificationPayload)
+        ).catch(error => {
+            console.error("Error al enviar la segunda notificación:", error.stack);
+        });
+    }, 2 * 60 * 1000);
   }); 
 
 //server escuchando
