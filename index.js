@@ -67,8 +67,8 @@ routes(app)
        
 
 app.post('/notification', function (req, res) {
+    console.log(req.body.subscription)
     webpush.sendNotification(
-        console.log(req.body.subscription)
         req.body.subscription, 
         JSON.stringify(notificationPayload)).catch(error => 
                             { console.error(error.stack); });
